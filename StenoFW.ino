@@ -20,8 +20,9 @@
 
 // #include "Stenoboard.h"
 // #include "Volksboard.h"
+// #include "Volksboard_3.h"
+// #include "Rachelboard.h"
 #include "Crayonboard.h"
-
 long debounceMillis = 20;
 
 // Keyboard state variables
@@ -38,7 +39,7 @@ int ledIntensity = 1; // Min 0 - Max 255
 #define GEMINI 0
 #define TXBOLT 1
 #define NKRO 2
-int protocol = GEMINI;
+int protocol = NKRO;
 
 // This is called when the keyboard is connected
 void setup() {
@@ -292,16 +293,16 @@ void sendChordTxBolt() {
 // they are released, eg. for mouse emulation functionality or custom key presses.
 void sendChord() {
   // If fn keys have been pressed, delegate to corresponding method and return
-  if (Key_Fn1 && Key_Fn2) {
-    fn1fn2();
-    return;
-  } else if (Key_Fn1) {
-    fn1();
-    return;
-  } else if (Key_Fn2) {
-    fn2();
-    return;
-  }
+//  if (Key_Fn1 && Key_Fn2) {
+//    fn1fn2();
+//    return;
+//  } else if (Key_Fn1) {
+//    fn1();
+//    return;
+//  } else if (Key_Fn2) {
+//    fn2();
+//    return;
+//  }
 
 if (protocol == NKRO) {
     sendChordNkro();
@@ -324,20 +325,20 @@ if (protocol == NKRO) {
 //    PH-B   ->   Set TX Bolt protocol mode
 void fn1() {
   // "PH" -> Set protocol
-  if (Key_P && Key_H) {
-    // "-PB" -> NKRO Keyboard
-    if (Key__P && Key__B) {
-      protocol = NKRO;
-    }
-    // "-G" -> Gemini PR
-    else if (Key__G) {
-      protocol = GEMINI;
-    }
-    // "-B" -> TX Bolt
-    else if (Key__B) {
-      protocol = TXBOLT;
-    }
-  }
+//  if (Key_P && Key_H) {
+//    // "-PB" -> NKRO Keyboard
+//    if (Key__P && Key__B) {
+//      protocol = NKRO;
+//    }
+//    // "-G" -> Gemini PR
+//    else if (Key__G) {
+//      protocol = GEMINI;
+//    }
+//    // "-B" -> TX Bolt
+//    else if (Key__B) {
+//      protocol = TXBOLT;
+//    }
+//  }
 }
 
 // Fn2 functions
@@ -364,22 +365,22 @@ void fn2() {
 //   HR-F   ->   LED intensity down
 void fn1fn2() {
   // "HR" -> Change LED intensity
-  if (Key_H && Key_R) {
-    // "-P" -> LED intensity up
-    if (Key__P) {
-      if (ledIntensity == 0) ledIntensity +=1;
-      else if(ledIntensity < 50) ledIntensity += 10;
-      else ledIntensity += 30;
-      if (ledIntensity > 255) ledIntensity = 0;
-      analogWrite(ledPin, ledIntensity);
-    }
-    // "-F" -> LED intensity down
-    if (Key__F) {
-      if(ledIntensity == 0) ledIntensity = 255;
-      else if(ledIntensity < 50) ledIntensity -= 10;
-      else ledIntensity -= 30;
-      if (ledIntensity < 1) ledIntensity = 0;
-      analogWrite(ledPin, ledIntensity);
-    }
-  }
+//  if (Key_H && Key_R) {
+//    // "-P" -> LED intensity up
+//    if (Key__P) {
+//      if (ledIntensity == 0) ledIntensity +=1;
+//      else if(ledIntensity < 50) ledIntensity += 10;
+//      else ledIntensity += 30;
+//      if (ledIntensity > 255) ledIntensity = 0;
+//      analogWrite(ledPin, ledIntensity);
+//    }
+//    // "-F" -> LED intensity down
+//    if (Key__F) {
+//      if(ledIntensity == 0) ledIntensity = 255;
+//      else if(ledIntensity < 50) ledIntensity -= 10;
+//      else ledIntensity -= 30;
+//      if (ledIntensity < 1) ledIntensity = 0;
+//      analogWrite(ledPin, ledIntensity);
+//    }
+//  }
 }
