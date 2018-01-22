@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 import sys
-#board = __import__("Stenoboard")
-
-board = __import__(sys.argv[1])
+board = __import__("Crayonboard")
 
 from gemini import *
 from txbolt import *

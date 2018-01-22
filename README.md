@@ -25,6 +25,7 @@ Then run
 ```
 genHeader.py >Yourboard.h
 ```
+Make sure to do this with python 3 - it doesn't work with python 2.7
 
 and modify the line in `StenoFW.ino` that says
 ```
@@ -40,7 +41,11 @@ Compile and download `StenoFW.ino` with the arduino IDE.
 As of July 1, 2017 the code starts up in Gemini mode (instead of NKRO)
 and it supports all individual keys of the Volksboard in Gemini mode.
 In TxBolt protocol, keys such as the 2 S- keys, the 4 * keys and the
-12 # keys are all mapped to 1 key (S-, *, or # respectively).
+12 # keys are all mapped to 1 key (S-, *, or # respectively)."
+
+On the Crayonboard, the '.ino' file has been modified so that it
+only deals with NKRO, not gemini or TxBolt. You could change this 
+by modifying the StenoFW.ino file.
 
 As of Sept 4, 2017 there is a Python version of the FW in order to use
 a Raspberry Pi instead of an Arduino as the keyboard controller. See the
